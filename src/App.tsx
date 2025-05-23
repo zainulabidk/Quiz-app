@@ -4,8 +4,8 @@ import {
   QuizContainer,
   Button,
   Title,
-  Dropdown,
-  Label,
+  // Dropdown,
+  // Label,
   Score
 } from './styled/GlobalStyle';
 import QuestionCard from './components/QustionCard';
@@ -27,7 +27,7 @@ const App: React.FC = () => {
   const [userAnswers, setUserAnswers] = useState<AnswerObject[]>([]);
   const [score, setScore] = useState(0);
   const [gameOver, setGameOver] = useState(true);
-  const [difficulty, setDifficulty] = useState<'easy' | 'medium' | 'hard'>('medium');
+  // const [difficulty, setDifficulty] = useState<'easy' | 'medium' | 'hard'>('medium');
 
   const resetQuizState = () => {
     setScore(0);
