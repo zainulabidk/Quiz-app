@@ -22,6 +22,7 @@ export const QuizContainer = styled.div`
 `;
 
 export const Button = styled.button`
+margin:15px;
   margin-top: 1rem;
   padding: 12px 24px;
   font-size: 1rem;

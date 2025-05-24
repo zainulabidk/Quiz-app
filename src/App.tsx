@@ -4,13 +4,14 @@ import {
   QuizContainer,
   Button,
   Title,
-  // Dropdown,
-  // Label,
+  Dropdown,
+  Label,
   Score
 } from './styled/GlobalStyle';
 import QuestionCard from './components/QustionCard';
 import { FetchQuizQustions, type QuestionState } from './API';
 import './App.css';
+
 export type AnswerObject = {
   question: string;
   answer: string;
@@ -27,7 +28,7 @@ const App: React.FC = () => {
   const [userAnswers, setUserAnswers] = useState<AnswerObject[]>([]);
   const [score, setScore] = useState(0);
   const [gameOver, setGameOver] = useState(true);
-  // const [difficulty, setDifficulty] = useState<'easy' | 'medium' | 'hard'>('medium');
+  const [difficulty, setDifficulty] = useState<'easy' | 'medium' | 'hard' | ''>('');
 
   const resetQuizState = () => {
     setScore(0);
@@ -36,9 +37,10 @@ const App: React.FC = () => {
   };
 
   const startTrivia = async () => {
+    if (!difficulty) return;
     setLoading(true);
     setGameOver(false);
-    const newQuestions = await FetchQuizQustions(TOTAL_QUESTIONS, 'medium');
+    const newQuestions = await FetchQuizQustions(TOTAL_QUESTIONS, difficulty);
     setQuestions(newQuestions);
     resetQuizState();
     setLoading(false);
@@ -72,12 +74,30 @@ const App: React.FC = () => {
     <AppWrapper>
       <QuizContainer>
         <Title>React Quiz</Title>
-        {gameOver || userAnswers.length === TOTAL_QUESTIONS ? (
+
+        {(gameOver || userAnswers.length === TOTAL_QUESTIONS) && (
           <>
             <Score>Your Score: {score}</Score>
-            <Button onClick={startTrivia}>Start</Button>
+            {/* <Label htmlFor="difficulty">Select Difficulty</Label> */}
+            <Dropdown
+              id="difficulty"
+              value={difficulty}
+              onChange={(e) =>
+                setDifficulty(e.target.value as 'easy' | 'medium' | 'hard' | '')
+              }
+            >
+              <option value="">Select your Level</option>
+              <option value="easy">Easy</option>
+              <option value="medium">Medium</option>
+              <option value="hard">Hard</option>
+            </Dropdown>
+
+            {/* Show Start button only if difficulty is selected */}
+            {difficulty && (
+              <Button onClick={startTrivia}>Start</Button>
+            )}
           </>
-        ) : null}
+        )}
 
         {loading && <Title>Loading Questions...</Title>}
 

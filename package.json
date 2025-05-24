@@ -10,10 +10,15 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "cra-template-pwa": "^2.0.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "styled-component": "^2.8.0",
-    "styled-components": "^6.1.18"
+    "styled-components": "^6.1.18",
+    "workbox-core": "^7.3.0",
+    "workbox-precaching": "^7.3.0",
+    "workbox-routing": "^7.3.0",
+    "workbox-strategies": "^7.3.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.25.0",
