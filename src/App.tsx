@@ -5,7 +5,6 @@ import {
   Button,
   Title,
   Dropdown,
-  Label,
   Score
 } from './styled/GlobalStyle';
 import QuestionCard from './components/QustionCard';
